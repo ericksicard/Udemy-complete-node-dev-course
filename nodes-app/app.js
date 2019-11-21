@@ -1,4 +1,5 @@
 const fs = require('fs');
+const validator = require('validator')
 
 /* IMPORTING NODE.JS CORE MODULES
 // This method creates the file if it doesn't exist or over-write any previous text
@@ -20,3 +21,10 @@ console.log( sum )
 const notes = getNotes();
 console.log(notes);
 */
+
+//IMPORTING NPM FILES
+console.log( validator.isEmail('esrfree@gmail.com')) // >true
+console.log( validator.isEmail('esrfree')) // >false
+
+console.log( validator.isURL('http://udemy.com')) // >true
+console.log( validator.isURL('udemy@com')) // >false
