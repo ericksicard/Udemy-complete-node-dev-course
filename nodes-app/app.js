@@ -1,5 +1,6 @@
 const fs = require('fs');
-const validator = require('validator')
+const validator = require('validator');
+const chalk = require('chalk');
 
 /* IMPORTING NODE.JS CORE MODULES
 // This method creates the file if it doesn't exist or over-write any previous text
@@ -23,8 +24,13 @@ console.log(notes);
 */
 
 //IMPORTING NPM FILES
+// validator npm package
 console.log( validator.isEmail('esrfree@gmail.com')) // >true
 console.log( validator.isEmail('esrfree')) // >false
 
 console.log( validator.isURL('http://udemy.com')) // >true
 console.log( validator.isURL('udemy@com')) // >false
+
+// chalk npm package
+const msgAlert = chalk.hex('#ffa500').bgGray.bold('Success!!');
+console.log( msgAlert )
