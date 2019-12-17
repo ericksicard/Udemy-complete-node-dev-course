@@ -32,5 +32,5 @@ console.log( validator.isURL('http://udemy.com')) // >true
 console.log( validator.isURL('udemy@com')) // >false
 
 // chalk npm package
-const msgAlert = chalk.hex('#ffa500').bgGray.bold('Success!!');
+const msgAlert = chalk.hex('#ffa500').bgBlueBright.bold.inverse('Success!!');
 console.log( msgAlert )
