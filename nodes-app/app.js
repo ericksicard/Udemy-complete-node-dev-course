@@ -1,7 +1,7 @@
-const fs = require('fs');
-const validator = require('validator');
-const chalk = require('chalk');
-const yargs = require('yargs');
+const fs = require('fs');                   // file system
+const validator = require('validator');     // validates formats
+const chalk = require('chalk');             // printing in colors
+const yargs = require('yargs');             // parsing arguments 
 
 /* IMPORTING NODE.JS CORE MODULES
 // This method creates the file if it doesn't exist or over-write any previous text
@@ -40,7 +40,7 @@ console.log( msgAlert )
 
 //GETTING INPUTS FROM USERS ( node app.js Erick )
 // printing the value passed
-console.log( process.argv[2] );
+console.log( `Input: ${process.argv[2]}` );
 
 const command = process.argv[2];
 if ( command === "Erick" ) {
@@ -59,9 +59,9 @@ yargs.version('1.1.0')  // --> node app.js --version
 
 // Create add command
 yargs.command({
-    command: 'add',
+    command: 'add',                 // command name
     describe: 'Add a new note',
-    builder: {
+    builder: {                      
         title: {
             describe: 'Note title',
             demandOption: true,      // required
@@ -73,7 +73,7 @@ yargs.command({
             type: 'string'
         }
     },
-    handler: function( argv ) {
+    handler: function( argv ) {      // code executed when add command is used   
         console.log( 'Title: ' + argv.title)
         console.log( 'Body: ' + argv.body )
     }
