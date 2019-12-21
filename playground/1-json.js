@@ -20,12 +20,14 @@ const book = {
 
 
 /******** Challenge: Work with JSON and the file system ********/
+
 const dataBuffer = fs.readFileSync('1-json.json');      // reading the data from the new file
 const dataJSON = dataBuffer.toString();                 // converting the data to a string
 const data = JSON.parse( dataJSON );                    // formating JSON data and converting it to an object
 
 data.name = "Erick";                                    // updating object properties 
 data.age = 40;
+data.job = 'JS Developer'
 
 const userJSON = JSON.stringify( data )                 // converting the data object to a JSON format(string) 
 fs.writeFileSync( '1-json.json', userJSON );            // saving the JSON data to a file

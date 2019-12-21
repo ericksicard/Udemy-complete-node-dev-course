@@ -61,7 +61,7 @@ yargs.version('1.1.0')  // --> node app.js --version
 yargs.command({
     command: 'add',                 // command name
     describe: 'Add a new note',
-    builder: {                      
+    builder: {                      // oject holding all command options
         title: {
             describe: 'Note title',
             demandOption: true,      // required
@@ -74,8 +74,8 @@ yargs.command({
         }
     },
     handler: function( argv ) {      // code executed when add command is used   
-        console.log( 'Title: ' + argv.title)
-        console.log( 'Body: ' + argv.body )
+        console.log( `Title: ${argv.title}` )
+        console.log( `Body: ${argv.body}` )
     }
 })
 
