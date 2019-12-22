@@ -1,1 +1,0 @@
-This file was created by Node.js! Appending some text into notes.txt

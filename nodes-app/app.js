@@ -2,6 +2,7 @@ const fs = require('fs');                   // file system
 const validator = require('validator');     // validates formats
 const chalk = require('chalk');             // printing in colors
 const yargs = require('yargs');             // parsing arguments 
+const notes = require('./notes.js')         // notes is an object with two properties(getNotes & addNotes)
 
 /* IMPORTING NODE.JS CORE MODULES
 // This method creates the file if it doesn't exist or over-write any previous text
@@ -26,36 +27,36 @@ console.log(notes);
 
 //IMPORTING NPM FILES
 // validator npm package
-console.log( validator.isEmail('esrfree@gmail.com')) // >true
-console.log( validator.isEmail('esrfree')) // >false
+//console.log( validator.isEmail('esrfree@gmail.com')) // >true
+//console.log( validator.isEmail('esrfree')) // >false
 
-console.log( validator.isURL('http://udemy.com')) // >true
-console.log( validator.isURL('udemy@com')) // >false
+//console.log( validator.isURL('http://udemy.com')) // >true
+//console.log( validator.isURL('udemy@com')) // >false
 
 // chalk npm package
-const msgAlert = chalk.hex('#ffa500').bgBlueBright.bold.inverse('Success!!');
-console.log( msgAlert )
+//const msgAlert = chalk.hex('#ffa500').bgBlueBright.bold.inverse('Success!!');
+//console.log( msgAlert )
 
 /****************** SECTION 4 ******************/
 
 //GETTING INPUTS FROM USERS ( node app.js Erick )
 // printing the value passed
-console.log( `Input: ${process.argv[2]}` );
-
-const command = process.argv[2];
-if ( command === "Erick" ) {
-    console.log( `Hi ${command}`)
-}
-else {
-    console.log( `I don't know you` )
-}
+//console.log( `Input: ${process.argv[2]}` );
+//
+//const command = process.argv[2];
+//if ( command === "Erick" ) {
+//    console.log( `Hi ${command}`)
+//}
+//else {
+//    console.log( `I don't know you` )
+//}
 
 //ARGUMENT PARSING WITH YARGS
 // run: node app.js Erick --job="web developer"
-console.log( yargs.argv ); // { _: [ 'Erick' ], job: 'web developer', '$0': 'app.js' }
+//console.log( yargs.argv ); // { _: [ 'Erick' ], job: 'web developer', '$0': 'app.js' }
 
 // Customize yargs version
-yargs.version('1.1.0')  // --> node app.js --version
+//yargs.version('1.1.0')  // --> node app.js --version
 
 // Create add command
 yargs.command({
@@ -74,8 +75,7 @@ yargs.command({
         }
     },
     handler: function( argv ) {      // code executed when add command is used   
-        console.log( `Title: ${argv.title}` )
-        console.log( `Body: ${argv.body}` )
+        notes.addNote( argv.title, argv.body )
     }
 })
 
