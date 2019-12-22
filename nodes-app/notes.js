@@ -8,10 +8,9 @@ function getNotes() {
 const addNote = ( title, body ) => {
     // 1- LOADS THE NOTES 
     const notes = loadNotes();
-    // checking for duplicated items in the array
-    const duplicateNotes = notes.filter( note => note.title === title );
+    const duplicateNote = notes.find( note => note.title === title ); // more efficient that filter for this case
 
-    if ( duplicateNotes.length === 0 ) {
+    if ( !duplicateNote ) {
         // 2- CHANGING THE NOTES: adding the argument values to the array 
         notes.push({
             title,          // same as title: title
@@ -50,6 +49,15 @@ const listNotes = () => {
     notes.forEach( note => console.log( note.title ))
 };
 
+const readNotes = title => {
+    // 1- LOADS THE NOTES 
+    const notes = loadNotes();
+    const noteFound = notes.find( note => note.title === title );
+
+    if ( noteFound ) console.log( `${chalk.bgGreen(noteFound.title)}: ${noteFound.body}`); 
+    else console.log( chalk.bgRed('No note found!'));
+}
+
 /******* Re-usable functions ***************/
 // saves the new data
 const saveNotes = notes => {
@@ -73,5 +81,6 @@ module.exports = {
     getNotes,
     addNote,
     removeNote,
-    listNotes
+    listNotes,
+    readNotes
 }
