@@ -5,13 +5,11 @@ function getNotes() {
     return 'Your notes...'
 }
 
-const addNote = function( title, body ) {
+const addNote = ( title, body ) => {
     // 1- LOADS THE NOTES 
     const notes = loadNotes();
     // checking for duplicated items in the array
-    const duplicateNotes = notes.filter( function( note ) {
-        return note.title === title;
-    })
+    const duplicateNotes = notes.filter( note => note.title === title );
 
     if ( duplicateNotes.length === 0 ) {
         // 2- CHANGING THE NOTES: adding the argument values to the array 
@@ -29,13 +27,11 @@ const addNote = function( title, body ) {
     }    
 }
 
-const removeNote = function( title ) {
+const removeNote = title => {
     // 1- LOADS THE NOTES 
     const notes = loadNotes();
     // keeping unique items in the array
-    const notesToKeep = notes.filter( function( note ) {
-        return note.title !== title;
-    })
+    const notesToKeep = notes.filter( note => note.title !== title );
 
     if ( notesToKeep.length < notes.length ) {
         saveNotes( notesToKeep );
@@ -48,13 +44,13 @@ const removeNote = function( title ) {
 
 /******* Re-usable functions ***************/
 // saves the new data
-const saveNotes = function( notes ) {
+const saveNotes = notes => {
     const dataJSON = JSON.stringify( notes );
     fs.writeFileSync( 'notes.json', dataJSON );
 }
 
 // loads notes and return an array of notes
-const loadNotes = function() {
+const loadNotes = () => {
     try {
         const dataBuffer = fs.readFileSync('notes.json');
         const dataJSON = dataBuffer.toString();
