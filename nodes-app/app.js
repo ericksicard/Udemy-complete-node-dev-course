@@ -2,7 +2,7 @@ const fs = require('fs');                   // file system
 const validator = require('validator');     // validates formats
 const chalk = require('chalk');             // printing in colors
 const yargs = require('yargs');             // parsing arguments 
-const notes = require('./notes.js')         // notes is an object with two properties(getNotes & addNotes)
+const notes = require('./notes.js')         // notes is an object with two properties(getNotes,addNotes and removeNotes)
 
 /* IMPORTING NODE.JS CORE MODULES
 // This method creates the file if it doesn't exist or over-write any previous text
@@ -83,8 +83,15 @@ yargs.command({
 yargs.command({
     command: 'remove',
     describe: 'Remove a note',
-    handler: function() {
-        console.log('Removing the note!')
+    builder: {
+        title: {
+            describe:'Title to be removed',
+            demandOption: true,
+            type: 'string'
+        }
+    },
+    handler: function( argv ) {
+        notes.removeNote( argv.title );
     }
 })
 
