@@ -42,6 +42,14 @@ const removeNote = title => {
     }
 }
 
+const listNotes = () => {
+    // 1- LOADS THE NOTES 
+    const notes = loadNotes();
+
+    console.log( chalk.bgGreen('Your notes!') );
+    notes.forEach( note => console.log( note.title ))
+};
+
 /******* Re-usable functions ***************/
 // saves the new data
 const saveNotes = notes => {
@@ -64,5 +72,6 @@ const loadNotes = () => {
 module.exports = {
     getNotes,
     addNote,
-    removeNote
+    removeNote,
+    listNotes
 }
