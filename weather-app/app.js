@@ -1,14 +1,22 @@
-const request = require('request');
+//const request = require('request');
 const geocode = require('./utils/geocode');
 const forecast = require('./utils/forecast');
 
+let location =  process.argv[2]; // getting the input from user at command line
 
-geocode( 'Miami', ( err, data ) => {
-    console.log( 'Error:', err );
-    console.log( 'Data:', data );
-})
+if ( !location ) console.log('Please, provide a location')
+else {
+    geocode( location, ( err, data ) => {
+        if ( err ) return console.log( 'Error:', err );
+    
+        forecast( data.latitude, data.longitude, ( err, forecastData ) => {
+            if ( err ) return console.log( 'Error:', err );
+            
+            console.log( data.location );
+            console.log( forecastData );
+        })
+    })
+}
 
-forecast( 25.761681, -80.191788, ( err, data ) => {
-    console.log( 'Error:', err );
-    console.log( 'Data:', data );
-})
+
+
