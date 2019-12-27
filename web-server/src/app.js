@@ -1,24 +1,14 @@
+const path = require('path');
 const express = require('express');
+
 // creating the express application
 const app = express();
 
-app.get('', ( req, res ) => {
-    res.send(`<h1>Weather</h1>`);
-});
+// Absolute path of the folder being served
+const publicDirectoryPath = path.join(__dirname, '../public');
 
-app.get('/help', ( req, res ) => {
-    res.send([{
-        name:"Erick"
-    },
-    {
-        name:"Oda"
-    }
-]);
-});
+app.use( express.static(publicDirectoryPath));
 
-app.get('/about', ( req, res ) => {
-    res.send('<h1>About</h1>');
-});
 
 app.get('/weather', ( req, res ) => {
     res.send({
