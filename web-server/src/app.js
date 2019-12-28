@@ -4,12 +4,15 @@ const express = require('express');
 // creating the express application
 const app = express();
 
-// Absolute path of the folder being served
+// Define paths for Express config (Absolute path of the folders being served)
 const publicDirectoryPath = path.join(__dirname, '../public');
+const viewsPath = path.join(__dirname, '../templates');
 
-// Using hbs as the default view engine
+// Setup handlebars engine and views location
 app.set('view engine', 'hbs');
+app.set('views', viewsPath);  //setup of the views directory(templates)
 
+// Setup static directory to serve 
 app.use( express.static(publicDirectoryPath));
 
 /************ Routes **************/
