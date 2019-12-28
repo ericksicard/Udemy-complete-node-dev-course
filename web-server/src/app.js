@@ -50,6 +50,22 @@ app.get('/weather', ( req, res ) => {
     });
 });
 
+app.get('/help/*', (req, res) => {
+    res.render('404', {
+        title: '404',
+        errorMsg: 'Help article not found',
+        name: 'Erick Sicard'
+    })
+})
+
+app.get('*', (req, res) => {   // this has to be last, after all possible matches have been checked
+    res.render('404', {
+        title: '404',
+        errorMsg: 'Page not found',
+        name: 'Erick Sicard'
+    })
+})
+
 /*********************************/ 
 
 app.listen(3000, () => {
