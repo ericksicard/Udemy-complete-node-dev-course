@@ -1,16 +1,19 @@
 const path = require('path');
 const express = require('express');
+const hbs = require('hbs');
 
 // creating the express application
 const app = express();
 
 // Define paths for Express config (Absolute path of the folders being served)
 const publicDirectoryPath = path.join(__dirname, '../public');
-const viewsPath = path.join(__dirname, '../templates');
+const viewsPath = path.join(__dirname, '../templates/views');
+const partialPath = path.join(__dirname, '../templates/partials');
 
 // Setup handlebars engine and views location
 app.set('view engine', 'hbs');
 app.set('views', viewsPath);  //setup of the views directory(templates)
+hbs.registerPartials(partialPath); // run "nodemon app.js -e js,hbs" to make nodemon watch for chances in .hbs
 
 // Setup static directory to serve 
 app.use( express.static(publicDirectoryPath));
@@ -34,6 +37,8 @@ app.get('/about', ( req, res ) => {
 app.get('/help', ( req, res ) => {
     res.render('help', {
         title: 'Help page',
+        helpText: 'Here we are going to provide all the help you might need',
+        title: 'Help',
         name: 'Erick Sicard'
     });
 });
