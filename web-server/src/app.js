@@ -30,6 +30,7 @@ app.get('', ( req, res ) => {
 app.get('/about', ( req, res ) => {
     res.render('about', {
         title: 'About me',
+        aboutText: 'Ask whatever you wanna know about us',
         name: 'Erick Sicard'
     });
 });
