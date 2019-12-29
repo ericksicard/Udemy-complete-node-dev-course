@@ -54,7 +54,7 @@ app.get('/weather', ( req, res ) => {
             error: 'You must provide a valid address'
         });
     }
-    geocode(address, ( err, {latitude, longitude, location} ) => {        
+    geocode(address, ( err, {latitude, longitude, location} = {} ) => {        
         if ( err ) return res.send({ err });
         
         forecast( latitude, longitude, ( err, forecastData ) => {
