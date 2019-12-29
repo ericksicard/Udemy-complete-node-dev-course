@@ -51,7 +51,7 @@ app.get('/weather', ( req, res ) => {
 
     if ( !address ) {
         return res.send({                               // use return here to avoid sending a response twice
-            error: 'You must provide a valid address'
+            err: 'You must provide a valid address'
         });
     }
     geocode(address, ( err, {latitude, longitude, location} = {} ) => {        
