@@ -45,9 +45,13 @@ app.get('/help', ( req, res ) => {
 });
 
 app.get('/weather', ( req, res ) => {
+    if ( !req.query.location ) {
+        return res.send({                               // use return here to avoid sending a response twice
+            error: 'You must provide a valid location'
+        });
+    }
     res.send({
-        forecast: '55 degrees',
-        location: "Miami"
+        location: req.query.location
     });
 });
 
