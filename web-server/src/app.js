@@ -1,6 +1,8 @@
 const path = require('path');
 const express = require('express');
 const hbs = require('hbs');
+const geocode = require('./utils/geocode');
+const forecast = require('./utils/forecast');
 
 // creating the express application
 const app = express();
@@ -45,14 +47,26 @@ app.get('/help', ( req, res ) => {
 });
 
 app.get('/weather', ( req, res ) => {
-    if ( !req.query.location ) {
+    let address = req.query.address;
+
+    if ( !address ) {
         return res.send({                               // use return here to avoid sending a response twice
-            error: 'You must provide a valid location'
+            error: 'You must provide a valid address'
         });
     }
-    res.send({
-        location: req.query.location
-    });
+    geocode(address, ( err, {latitude, longitude, location} ) => {        
+        if ( err ) return res.send({ err });
+        
+        forecast( latitude, longitude, ( err, forecastData ) => {
+            if ( err ) return res.send({ err });
+
+            res.send({
+                address,
+                location,
+                forecast: forecastData
+            });
+        }) 
+    })
 });
 
 app.get('/help/*', (req, res) => {
