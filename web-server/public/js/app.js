@@ -19,7 +19,9 @@ weatherForm.addEventListener( 'submit', (e) => {
                     else {
                         msgOne.textContent = data.location;
                         msgTwo.innerHTML = `Summary: ${data.forecast.summary} <br>
-                        Temperature: ${data.forecast.temperature} <br>
+                        Temperature: ${data.forecast.temperature}°C <br>
+                        Lowest Temperature: ${data.forecast.tempLow}°C <br>
+                        Highest Temperature: ${data.forecast.tempHigh}°C <br>
                         Rain Probability: ${data.forecast.precipProbability}%
                         `;
                     }
