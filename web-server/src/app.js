@@ -6,6 +6,8 @@ const forecast = require('./utils/forecast');
 
 // creating the express application
 const app = express();
+// setup for heroku and local server
+const port = process.env.PORT || 3000 ; 
 
 // Define paths for Express config (Absolute path of the folders being served)
 const publicDirectoryPath = path.join(__dirname, '../public');
@@ -87,6 +89,6 @@ app.get('*', (req, res) => {   // this has to be last, after all possible matche
 
 /*********************************/ 
 
-app.listen(3000, () => {
-    console.log('Server is up on port 3000.')
+app.listen(port, () => {
+    console.log(`Server is up on port ${port}.`)
 })
